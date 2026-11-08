@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+
+# secrets / local config
+.env
+.env.*
+!.env.example
+
+# Playwright run artifacts (regenerated on every run)
+test-results/
+playwright-report/
+playwright-report-*/
+blob-report/
+playwright/.cache/
+
+# raw recordings produced during a run (curated copies live in docs/)
+/videos/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Claude Code personal overrides (the rest of .claude/ IS committed)
+.claude/settings.local.json
+
+# local git bundle backups
+*.bundle
+*.zip
