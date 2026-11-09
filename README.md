@@ -84,7 +84,9 @@ End-to-end automation of the **DMoney Agent journey** on
 │   ├── types/                    # shared types
 │   └── utils/                    # api.ts (setup only), csv.ts, data.ts
 ├── tests/
+│   ├── global-setup.ts           # logs in as Admin/System once, saves storageState for reuse
 │   ├── e2e/agent-journey.spec.ts # TC01–TC20 (ordered, one browser session)
+│   ├── e2e/auth-reuse.spec.ts    # proves the saved Admin/System sessions restore correctly
 │   └── negative/auth-validation.spec.ts
 ├── output/                       # self_statement_YYYY-MM-DD.csv
 ├── docs/                         # screenshots + video used in this README

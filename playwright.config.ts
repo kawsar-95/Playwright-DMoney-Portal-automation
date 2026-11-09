@@ -7,6 +7,7 @@ const slowMo = Number(process.env.SLOW_MO ?? 0);
 
 export default defineConfig({
   testDir: './tests',
+  globalSetup: require.resolve('./tests/global-setup'),
   // The journey is one long, stateful flow on a live shared portal: run it strictly in order.
   fullyParallel: false,
   workers: 1,

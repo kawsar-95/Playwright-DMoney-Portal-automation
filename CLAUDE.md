@@ -15,6 +15,11 @@ Playwright + TypeScript automation of the DMoney Agent journey on
 - `src/utils/csv.ts`, `src/utils/data.ts` – CSV writer/parser, unique data builders, date + money helpers
 - `tests/e2e/agent-journey.spec.ts` – the 20 ordered journey tests (TC01–TC20), one shared browser session
 - `tests/negative/` – stand-alone negative checks
+- `tests/global-setup.ts` – logs in once as Admin and System (the two fixed-credential roles) and saves each
+  session to `playwright/.auth/*.json` (gitignored). A new test that needs to start already authenticated as
+  one of them can do `test.use({ storageState: adminAuthFile })` (see `tests/e2e/auth-reuse.spec.ts`) instead of
+  repeating the login flow. Agent/Customer/Merchant aren't included: each run creates a brand-new account for
+  those, so they must still log in (with OTP) inside the test itself.
 - `output/self_statement_YYYY-MM-DD.csv` – CSV produced by TC20
 
 ## Conventions

@@ -12,6 +12,7 @@ playwright-report/
 playwright-report-*/
 blob-report/
 playwright/.cache/
+playwright/.auth/
 
 # raw recordings produced during a run (curated copies live in docs/)
 /videos/
