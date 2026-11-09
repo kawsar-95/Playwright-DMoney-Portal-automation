@@ -63,9 +63,11 @@ End-to-end automation of the **DMoney Agent journey** on
 | 20. Self Statement data is saved to the CSV file | TC20 | smoke + regression |
 | Extra: wrong password is rejected | NEG01 | regression only |
 | Extra: non-Gmail registration is rejected | NEG02 | regression only |
+| Extra: Admin session is reused via storageState (no login step) | TC-AUTH01 | smoke + regression |
+| Extra: System session is reused via storageState (no login step) | TC-AUTH02 | smoke + regression |
 
-- **Regression suite:** all 22 tests (`npm run regression`).
-- **Smoke suite:** the 19 positive tests tagged `@smoke` (`npm run smoke`).
+- **Regression suite:** all 24 tests (`npm run regression`).
+- **Smoke suite:** the 21 positive tests tagged `@smoke` (`npm run smoke`).
 
 ## Project structure
 
@@ -126,15 +128,18 @@ recording of the journey to `videos/agent-journey.webm`.
 
 ## Regression Test Result
 
-`npm run regression:headed`: **22 passed**, 0 failed
+`npm run regression`: **24 passed**, 0 failed (20 journey + 2 negative + 2 auth-state-reuse)
 
 ![Regression – terminal](docs/screenshots/regression-terminal.png)
 
 ![Regression – HTML report](docs/screenshots/regression-report.png)
 
+> Screenshots above are from the original 22-test run; the latest run (24 tests, including the new
+> auth-state-reuse checks) also passed in full — see the terminal output in the project history.
+
 ## SmokeTest Result
 
-`npm run smoke`: **19 passed** (positive tests only), 0 failed
+`npm run smoke`: **21 passed** (positive tests only), 0 failed
 
 ![Smoke – terminal](docs/screenshots/smoke-terminal.png)
 
