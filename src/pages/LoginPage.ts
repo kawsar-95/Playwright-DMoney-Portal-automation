@@ -23,7 +23,9 @@ export class LoginPage extends BasePage {
 
   async open(): Promise<void> {
     await this.page.goto('/login');
-    await expect(this.identifier).toBeVisible();
+    // Explicit timeout: this runs in global-setup too, outside a test, where the config's
+    // `expect.timeout` doesn't apply and the library default (5s) is too tight for a cold CI run.
+    await expect(this.identifier).toBeVisible({ timeout: 15_000 });
   }
 
   async submitCredentials(identifier: string, password: string): Promise<void> {

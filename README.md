@@ -172,15 +172,6 @@ Full automation recorded in headed mode (regression suite, `SLOW_MO=400`):
 | [`.claude/agents/playwright-debugger.md`](.claude/agents/playwright-debugger.md) | Diagnoses failures from `error-context.md` and traces, and fixes selectors or timing without weakening assertions |
 | [`.claude/commands/`](.claude/commands) | `/run-regression`, `/run-smoke`, `/add-test <scenario>` |
 
-## CI (`.github/workflows/ci.yml`)
-
-- **`typecheck`** runs on every push/PR to `main` (`tsc --noEmit`).
-- **`e2e`** runs the full regression suite, but only on a manual **Run workflow** trigger — the portal is a
-  shared live environment, so it never fires automatically on push/PR (see notes below). It needs these
-  repository secrets, matching `.env.example`: `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `SYSTEM_EMAIL`,
-  `SYSTEM_PASSWORD`, `AGENT_PASSWORD`, `AGENT_NEW_PASSWORD`, `API_SECRET_KEY`. The HTML report is uploaded
-  as a workflow artifact.
-
 ## Design notes & portal quirks
 
 - **One session, ordered tests.** The journey is stateful (each step needs the previous one), so it runs

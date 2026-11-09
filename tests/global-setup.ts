@@ -17,9 +17,17 @@ export const systemAuthFile = path.join(authDir, 'system.json');
 async function saveLoginState(baseURL: string, email: string, password: string, outFile: string): Promise<void> {
   const browser = await chromium.launch();
   const page = await browser.newPage({ baseURL });
-  await new LoginPage(page).loginDirect(email, password);
-  await page.context().storageState({ path: outFile });
-  await browser.close();
+  try {
+    await new LoginPage(page).loginDirect(email, password);
+    await page.context().storageState({ path: outFile });
+  } catch (error) {
+    // No test is running here, so Playwright won't auto-capture a trace/screenshot on failure:
+    // log the page's actual URL so a CI timeout can be told apart from a wrong credential or selector.
+    console.error(`global-setup login failed for ${email} at ${page.url()}`);
+    throw error;
+  } finally {
+    await browser.close();
+  }
 }
 
 export default async function globalSetup(config: FullConfig): Promise<void> {
